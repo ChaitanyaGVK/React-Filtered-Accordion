@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useCallback, useEffect } from 'react';
 import  { useApi } from './data/data';
 import Container from './components/Container';
 import Modal from './components/Modal';
@@ -9,13 +9,13 @@ function App() {
     show: false,
     objective: {}
   });
-  if(loading) return <h1>Loading...</h1>
-  const modalDisplayHandler = (obj)=> {
+  const modalDisplayHandler = useCallback((obj)=> {
     setSelectedObjective({
       show: obj.show,
       data: obj.objective
     });
-  }
+  }, []);
+  if(loading) return <h1>Loading...</h1>
   return (
     <div className="App">
       <ModalContext.Provider value = {modalDisplayHandler}>

@@ -7,9 +7,14 @@ function AccordionContent(props) {
         <ol type = 'a'>
            {
                props.contentList.map(item => {
-                   return <li key = {item.id} onClick = {()=> {ModalHandler(modalHandler, item)}}>
-                   {item.title}
-                   </li>
+                   return (
+                    <div key = {item.id}>   
+                        <i className='far fa-user-circle' style={{fontSize:'24px'}}></i>     
+                        <li onClick = {()=> {ModalHandler(modalHandler, item)}}>
+                        {item.title}
+                        </li>
+                    </div>
+                    )
                })
            } 
         </ol>

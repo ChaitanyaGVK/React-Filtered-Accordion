@@ -14,14 +14,17 @@ function Accordion(data) {
         setToggle((prevState) => !prevState);
     }
     const modalHandler = useContext(ModalContext);
+    const list = data.filter === "default" ? data.childList.filter(item => item.parent_objective_id === data.parent.id) : 
+          data.childList.filter(item => item.parent_objective_id === data.parent.id && item.category.includes(data.filter)); 
     return (
         <>
             <button className={`accordion ${toggle ? 'active' : ''}`} onClick = {()=> {ModalHandler(modalHandler, data.parent)}}>
-            <i className= {`arrow ${toggle ? '' : 'up'}`} onClick = {toggleAccordion} ></i>            
+            <i className= {`arrow ${toggle ? '' : 'up'}`} onClick = {toggleAccordion} ></i>   
+            <i className='far fa-user-circle' style={{fontSize:'24px'}}></i>         
             {data.index + 1}. {data.parent.title}</button>
             <div className="panel" ref = {panelRef}>
-                { data.childList.length > 0 &&
-                    <AccordionContent contentList = {data.childList} />
+                { list.length > 0 &&
+                    <AccordionContent contentList = {list} />
                 }    
             </div>
         </>

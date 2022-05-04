@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-export const useApi = (url) => {
+export const useApi = () => {
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState(null)
 
   const fetchApi = () => {
-    fetch(url)
+    fetch('https://okrcentral.github.io/sample-okrs/db.json')
     .then(response => {
       return response.json()
     })
