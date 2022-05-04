@@ -14,10 +14,12 @@ function Accordion(data) {
         setToggle((prevState) => !prevState);
     }
     const modalHandler = useContext(ModalContext);
+    const verticalLineStyle = {height: (panelRef.current ? panelRef.current.scrollHeight : 0) + 'px'};
     return (
         <>
             <button className={`accordion ${toggle ? 'active' : ''}`} onClick = {()=> {ModalHandler(modalHandler, data.parent)}}>
-            <i className= {`arrow ${toggle ? '' : 'up'}`} onClick = {toggleAccordion} ></i>            
+            <i className= {`arrow ${toggle ? '' : 'up'}`} onClick = {toggleAccordion} ></i>   
+            <i className='far fa-user-circle' style={{fontSize:'24px'}}></i>         
             {data.index + 1}. {data.parent.title}</button>
             <div className="panel" ref = {panelRef}>
                 { data.childList.length > 0 &&
